@@ -1,0 +1,21 @@
+.task-container {
+    width: 100%;
+    height: 3rem;
+    border-bottom: 1.5px solid #ccc;
+    padding: 0px 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: none;
+}
+.task-name-completed-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.task-name {
+    font-size: larger;
+    font-weight: normal;
+    margin-left: 10px;
+    text-transform: lowercase;
+}

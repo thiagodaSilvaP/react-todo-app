@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AddTask } from '../../components/add-tasks/AddTask';
 
 import { Tasks } from '../../components/tasks/Tasks';
 
@@ -10,12 +11,17 @@ export const Todo = () => {
         { name: 'Cozinhar' },
         { name: 'Tocar' },
         { name: 'Cantar' },
+        { name: 'Cantar' },
+        { name: 'Cantar' },
+        { name: 'Cantar' },
+        { name: 'Cantar' },
+        { name: 'Cantar' },
     ]);
 
     return (
-        <div className="todo-container">
-            <div>Header</div>
-            <Tasks data={data}/>
-        </div>
+        <main className="todo-container">
+            <AddTask />
+            <Tasks data={data} />
+        </main>
     )
 };

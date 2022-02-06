@@ -23,20 +23,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 .completed-task,
 .delete-task,
 .edit-task {
   font-size: larger;
   cursor: pointer;
-  color: 	#00CED1 ;
+  color: #00ced1;
 }
 .delete-task {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 .completed-task:hover,
 .delete-task:hover,
 .edit-task:hover {
-    color: #20B2AA;
+  color: #20b2aa;
+}
+.edit-task-name {
+  width: 300px;
+  height: 30px;
+  padding: 0px 10px;
+  border: 1.5px solid rgb(150, 150, 150);
+  border-radius: 4px;
+  padding: 0px 5px;
+}
+.edit-task-name::placeholder {
+  font-style: italic;
+}
+.edit-task-button {
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #00ced1;
+  color: #fff;
+  font-weight: bolder;
+  cursor: pointer;
 }

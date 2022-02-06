@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import "../../styles/add-task/add-task.css";
 
@@ -7,7 +7,13 @@ export const AddTask = ({ handleTaskAdition }) => {
 
   const handleInputChange = (event) => setTaskName(event.target.value);
 
-  const handleOnClick = () => handleTaskAdition(taskName);
+  const handleOnClick = () => {
+    handleTaskAdition(taskName);
+    handleClearInput()
+    
+  }
+
+  const handleClearInput = () => setTaskName('')
 
   return (
     <>

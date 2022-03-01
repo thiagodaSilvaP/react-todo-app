@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Task } from "../task/Task";
+import { Task } from "../../../components/Task";
 
-import "../../styles/tasks/tasks.css";
+import {Container} from './style';
 
 export const Tasks = ({ data, handleTaskDeletion, handleTaskComplete, handleTaskEdit }) => {
   return (
-    <div className="tasks-container">
+    <Container>
       {data.map((task, index) => (
         <Task
           task={task}
@@ -16,6 +16,6 @@ export const Tasks = ({ data, handleTaskDeletion, handleTaskComplete, handleTask
           handleTaskEdit={handleTaskEdit}
         />
       ))}
-    </div>
+    </Container>
   );
 };

@@ -1,4 +1,6 @@
-.App {
+import styled from "styled-components";
+
+export const Container = styled.div`
   width: 80vw;
   height: 100vh;
   margin: 0 auto;
@@ -7,4 +9,4 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-}
+`;

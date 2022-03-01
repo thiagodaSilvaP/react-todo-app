@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { AddTask } from "../../components/add-tasks/AddTask";
 
-import { Tasks } from "../../components/tasks/Tasks";
+import { AddTask } from "./AddTasks";
+import { Tasks } from "./Tasks";
 
-import "../../styles/todo/todo.css";
+import { Container } from "./style";
 
 export const Todo = () => {
   const [data, setData] = useState([
@@ -36,7 +36,7 @@ export const Todo = () => {
   console.log(data);
 
   return (
-    <main className="todo-container">
+    <Container>
       <AddTask handleTaskAdition={handleTaskAdition} />
       <Tasks
         data={data}
@@ -44,6 +44,6 @@ export const Todo = () => {
         handleTaskComplete={handleTaskComplete}
         handleTaskEdit={handleTaskEdit}
       />
-    </main>
+    </Container>
   );
 };

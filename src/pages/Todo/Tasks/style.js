@@ -21,4 +21,27 @@ export const Container = styled.div`
     background: #00ced1;
     border-radius: 20px;
   }
+
+  .fade-enter {
+    opacity: 0.01;
+  }
+
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-in;
+  }
+
+  .fade-leave {
+    opacity: 1;
+  }
+
+  .fade-leave.fade-leave-active {
+    opacity: 0.01;
+    transition: opacity 200ms ease-in;
+  }
+`;
+
+export const TaskContainer = styled.div`
+  width: 100%;
+  height: 100%;
 `;

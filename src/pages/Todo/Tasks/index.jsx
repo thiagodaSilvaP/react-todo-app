@@ -1,12 +1,14 @@
-import React, {useContext} from "react";
-import {TasksContext} from '../../../contexts/TasksContexts';
+import React, { useContext } from "react";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+
+import { TasksContext } from "../../../contexts/TasksContexts";
 
 import { Task } from "../../../components/Task";
 
-import { Container } from "./style";
+import { Container, TaskContainer } from "./style";
 
 export const Tasks = () => {
-  const {data, setData} = useContext(TasksContext)
+  const { data, setData } = useContext(TasksContext);
 
   const handleTaskDeletion = (taskId) => {
     const newTasks = data.filter((task) => task.id !== taskId);
@@ -26,18 +28,24 @@ export const Tasks = () => {
     );
     setData(newTasks);
   };
-  
+
   return (
     <Container>
-      {data.map((task, index) => (
-        <Task
-          task={task}
-          key={`task-${index}`}
-          handleTaskDeletion={handleTaskDeletion}
-          handleTaskComplete={handleTaskComplete}
-          handleTaskEdit={handleTaskEdit}
-        />
-      ))}
+      <ReactCSSTransitionGroup
+        transitionName="fade"
+        transitionEnterTimeout={200}
+        transitionLeaveTimeout={200}
+      >
+          {data.map((task, index) => (
+            <Task
+              task={task}
+              key={`task-${index}`}
+              handleTaskDeletion={handleTaskDeletion}
+              handleTaskComplete={handleTaskComplete}
+              handleTaskEdit={handleTaskEdit}
+            />
+          ))}
+      </ReactCSSTransitionGroup>
     </Container>
   );
 };

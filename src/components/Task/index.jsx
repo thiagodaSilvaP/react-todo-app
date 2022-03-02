@@ -11,7 +11,7 @@ import {
   EditButton,
   DeleteButton,
   EditTaskNameInput,
-  EditTaskNameButton
+  EditTaskNameButton,
 } from "./style";
 
 export const Task = ({
@@ -20,31 +20,32 @@ export const Task = ({
   handleTaskComplete,
   handleTaskEdit,
 }) => {
-  const [taskName, settaskName] = useState(task.name);
+  const [taskEditName, setEditTaskName] = useState(undefined);
   const [isEdit, setIsEdit] = useState(false);
 
   const handleOnDeleteClick = () => handleTaskDeletion(task.id);
 
   const handleOnCompleteTask = () => handleTaskComplete(task.id);
 
-  const handleChangeTaskName = (event) => settaskName(event.target.value);
+  const handleChangeTaskName = (event) => setEditTaskName(event.target.value);
 
   const handleOnEditTask = () => {
-    handleTaskEdit(task.id, taskName);
+    handleTaskEdit(task.id, taskEditName);
     changeIsEdit();
   };
 
   const changeIsEdit = () => setIsEdit(!isEdit);
 
   return (
-    <Container taskCompleted={task.completed}
-    //style={task.completed ? { background: "#00CED1", color: "#fff" } : {}}
+    <Container
+      taskCompleted={task.completed}
+      //style={task.completed ? { background: "#00CED1", color: "#fff" } : {}}
     >
       <TaskNameAndCompletedButtonContainer>
         {isEdit ? (
           <EditTaskNameInput
             type="text"
-            placeholder={taskName}
+            placeholder={task.name}
             className="edit-task-name"
             onChange={handleChangeTaskName}
           ></EditTaskNameInput>

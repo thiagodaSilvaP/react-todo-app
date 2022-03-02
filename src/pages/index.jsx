@@ -1,13 +1,17 @@
 import React from 'react';
 
+import { TasksProvider } from '../contexts/TasksContexts';
+
 import { Todo } from './Todo';
 
-import {Container} from './style';
+import { Container } from './style';
 
 function App() {
   return (
     <Container>
-      <Todo />
+      <TasksProvider>
+        <Todo />
+      </TasksProvider>
     </Container>
   );
 }

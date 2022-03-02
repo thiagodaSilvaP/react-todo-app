@@ -1,4 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+
+import {TasksContext} from '../../../contexts/TasksContexts';
 
 import {
   Container,
@@ -6,9 +8,13 @@ import {
   AddTaskButtonContainer,
 } from "./style";
 
-export const AddTask = ({ handleTaskAdition }) => {
+export const AddTask = () => {
   const [taskName, setTaskName] = useState("");
+  const {data, setData} = useContext(TasksContext)
   const inputElement = useRef();
+
+  const handleTaskAdition = (taskName) =>
+    setData([...data, { id: Math.random(), name: taskName, completed: false }]);
 
   const handleOnClick = () => {
     handleTaskAdition(taskName);
@@ -19,6 +25,8 @@ export const AddTask = ({ handleTaskAdition }) => {
   const handleInputChange = (event) => setTaskName(event.target.value);
   const handleClearInput = () => setTaskName("");
   const handleFocusInput = () => inputElement.current.focus();
+
+  console.log(data)
 
   return (
     <>

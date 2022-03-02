@@ -10,7 +10,6 @@ export const Tasks = () => {
 
   const handleTaskDeletion = (taskId) => {
     const newTasks = data.filter((task) => task.id !== taskId);
-    console.log(newTasks);
     setData(newTasks);
   };
 

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { AiOutlineCheckCircle, AiFillDelete, AiFillEdit } from "react-icons/ai";
+
+import { TasksContext } from "../../contexts/TasksContexts";
 
 //import "../../styles/task/task.css";
 
@@ -14,34 +16,48 @@ import {
   EditTaskNameButton,
 } from "./style";
 
-export const Task = ({
-  task,
-  handleTaskDeletion,
-  handleTaskComplete,
-  handleTaskEdit,
-}) => {
+export const Task = ({ task }) => {
   const [taskEditName, setEditTaskName] = useState(undefined);
   const [isEdit, setIsEdit] = useState(false);
-
-  const handleOnDeleteClick = () => handleTaskDeletion(task.id);
-
-  const handleOnCompleteTask = () => handleTaskComplete(task.id);
+  const { setTasks } = useContext(TasksContext);
 
   const handleChangeTaskName = (event) => setEditTaskName(event.target.value);
 
+  const handleCompleteTask = (taskId) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId
+          ? { ...task, completed: !task.completed }
+          : { ...task }
+      )
+    );
+  };
+
+  const handleDeleteTask = (taskId) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  };
+
   const handleOnEditTask = () => {
-    handleTaskEdit(task.id, taskEditName);
+    handlekEditTask(task.id, taskEditName);
     changeIsEdit();
+  };
+
+  const handlekEditTask = (taskId, taskName) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, name: taskName } : { ...task }
+      )
+    );
   };
 
   const changeIsEdit = () => setIsEdit(!isEdit);
 
   return (
     <Container
-      taskCompleted={task.completed}
+      isComplete={task.completed}
       //style={task.completed ? { background: "#00CED1", color: "#fff" } : {}}
     >
-      <TaskNameAndCompletedButtonContainer>
+      <TaskNameAndCompletedButtonContainer isComplete={task.completed}>
         {isEdit ? (
           <EditTaskNameInput
             type="text"
@@ -52,7 +68,8 @@ export const Task = ({
         ) : (
           <>
             <CompletedButton
-              onClick={handleOnCompleteTask}
+              onClick={() => handleCompleteTask(task.id)}
+              isComplete={task.completed}
               //style={task.completed ? { color: "#fff" } : {}}
             >
               <AiOutlineCheckCircle />
@@ -63,7 +80,8 @@ export const Task = ({
       </TaskNameAndCompletedButtonContainer>
       <EditAndDeleteButtonContainer>
         <DeleteButton
-          onClick={handleOnDeleteClick}
+          onClick={() => handleDeleteTask(task.id)}
+          isComplete={task.completed}
           //style={task.completed ? { color: "#fff" } : {}}
         >
           <AiFillDelete />
@@ -71,6 +89,7 @@ export const Task = ({
         {isEdit ? (
           <EditTaskNameButton
             onClick={handleOnEditTask}
+            isComplete={task.completed}
             /*style={
               task.completed ? { background: "#fff", color: "#00ced1" } : {}
             }*/
@@ -80,6 +99,7 @@ export const Task = ({
         ) : (
           <EditButton
             onClick={changeIsEdit}
+            isComplete={task.completed}
             //style={task.completed ? { color: "#fff" } : {}}
           >
             <AiFillEdit />

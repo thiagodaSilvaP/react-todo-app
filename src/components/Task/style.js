@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-let theme
-
 export const Container = styled.div`
   width: 100%;
   height: 3rem;
@@ -10,8 +8,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${theme};
-
+  background-color: ${({ isComplete }) => (isComplete ? "#00CED1" : "#fff")};
 `;
 
 export const TaskNameAndCompletedButtonContainer = styled.label`
@@ -24,6 +21,7 @@ export const TaskNameAndCompletedButtonContainer = styled.label`
     font-weight: normal;
     margin-left: 10px;
     text-transform: lowercase;
+    color: ${({ isComplete }) => (isComplete ? "#fff" : "#000")};
   }
 `;
 
@@ -34,33 +32,45 @@ export const EditAndDeleteButtonContainer = styled.div`
 `;
 
 export const CompletedButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: larger;
   cursor: pointer;
-  color: #00ced1;
+  color: ${({ isComplete }) => (isComplete ? "#fff" : "#00CED1")};
+  background-color: inherit;
 
   &:hover {
-    color: #20b2aa;
+    color: ${({ isComplete }) => (isComplete ? "#eee" : "#20b2aa")};
   }
 `;
 
 export const EditButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: larger;
   cursor: pointer;
-  color: #00ced1;
+  color: ${({ isComplete }) => (isComplete ? "#fff" : "#00CED1")};
+  background-color: inherit;
 
   &:hover {
-    color: #20b2aa;
+    color: ${({ isComplete }) => (isComplete ? "#eee" : "#20b2aa")};
   }
 `;
 
 export const DeleteButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: larger;
   cursor: pointer;
-  color: #00ced1;
   margin-right: 10px;
+  color: ${({ isComplete }) => (isComplete ? "#fff" : "#00CED1")};
+  background-color: inherit;
 
   &:hover {
-    color: #20b2aa;
+    color: ${({ isComplete }) => (isComplete ? "#eee" : "#20b2aa")};
   }
 `;
 
@@ -84,4 +94,7 @@ export const EditTaskNameButton = styled.button`
   color: #fff;
   font-weight: bolder;
   cursor: pointer;
+
+  color: ${({ isComplete }) => (isComplete ? "#00CED1" : "fff")};
+  background-color: ${({ isComplete }) => (isComplete ? "#fff" : "#00CED1")};
 `;

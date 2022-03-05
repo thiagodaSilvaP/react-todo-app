@@ -1,6 +1,6 @@
-import React, {useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
-import {TasksContext} from '../../contexts/TasksContexts';
+import { TasksContext } from '../../contexts/TasksContexts';
 
 import { AddTask } from "./AddTasks";
 import { Tasks } from "./Tasks";
@@ -8,16 +8,17 @@ import { Tasks } from "./Tasks";
 import { Container } from "./style";
 
 export const Todo = () => {
-  const {data, setData} = useContext(TasksContext)
+  const { tasks } = useContext(TasksContext)
 
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(data))
-  }, [data])
-
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    console.log(JSON.parse(localStorage.getItem('tasks')));
+  }, [tasks])
+  
   return (
     <Container>
-      <AddTask data={data} setData={setData}/>
-      <Tasks/>
+      <AddTask />
+      <Tasks />
     </Container>
   );
 };

@@ -6,7 +6,11 @@ export const TasksProvider = ({ children }) => {
   /*const [data, setData] = useState([
     { id: Math.random(), name: "Ler", completed: false },
   ]);*/
-  const [data, setData] = useState(JSON.parse(localStorage.getItem('tasks')) );
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
 
-  return <TasksContext.Provider value={{data, setData}}>{children}</TasksContext.Provider>;
+  return (
+    <TasksContext.Provider value={{ tasks, setTasks }}>
+      {children}
+    </TasksContext.Provider>
+  );
 };

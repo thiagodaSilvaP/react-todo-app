@@ -5,12 +5,12 @@ import { TasksContext } from "../../../contexts/TasksContexts";
 
 import { Task } from "../../../components/Task";
 
-import { Container, TaskContainer } from "./style";
+import { Container } from "./style";
 
 export const Tasks = () => {
-  const { data, setData } = useContext(TasksContext);
+  const { tasks } = useContext(TasksContext);
 
-  const handleTaskDeletion = (taskId) => {
+  /*const handleTaskDeletion = (taskId) => {
     const newTasks = data.filter((task) => task.id !== taskId);
     setData(newTasks);
   };
@@ -27,7 +27,7 @@ export const Tasks = () => {
       task.id === taskId ? { ...task, name: taskName } : { ...task }
     );
     setData(newTasks);
-  };
+  };*/
 
   return (
     <Container>
@@ -36,13 +36,10 @@ export const Tasks = () => {
         transitionEnterTimeout={200}
         transitionLeaveTimeout={200}
       >
-          {data.map((task, index) => (
+          {tasks.map((task, index) => (
             <Task
               task={task}
               key={`task-${index}`}
-              handleTaskDeletion={handleTaskDeletion}
-              handleTaskComplete={handleTaskComplete}
-              handleTaskEdit={handleTaskEdit}
             />
           ))}
       </ReactCSSTransitionGroup>
